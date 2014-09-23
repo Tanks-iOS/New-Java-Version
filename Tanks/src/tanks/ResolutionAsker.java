@@ -6,6 +6,11 @@
 
 package tanks;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Baron
@@ -19,6 +24,14 @@ public class ResolutionAsker {
     //open panel that will ask for resolution
     //4 types and return appropriate dimensions to main program
     //etc
+        
+        JFrame askerFrame = new JFrame();
+        askerFrame.setVisible(true);
+        askerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        askerFrame.add(new JLabel("Select A Dimension Please:"));
+        
+        
+        
     }
     
     public int getWidth()
