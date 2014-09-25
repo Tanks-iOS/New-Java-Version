@@ -29,7 +29,7 @@ public class ResolutionAsker {
     ResolutionAsker()
     {
         //creating the new frame to ask dimensions
-        JFrame askerFrame = new JFrame();
+        final JFrame askerFrame = new JFrame();
         //set the size to 400 by 300 (just to start not real dimensions yet)
         askerFrame.setSize(400,300);
         //program exits if hit close button
@@ -68,7 +68,11 @@ public class ResolutionAsker {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                width = 800;
+                height = 600;
+                path = "eightsix";
+                askerFrame.dispose();
+            
             }
         });
         
@@ -76,8 +80,10 @@ public class ResolutionAsker {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                width = 1024;
+                height = 768;
+                path = "tentwentyfour";
+                askerFrame.dispose(); }
         });
         
         
