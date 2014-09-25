@@ -7,8 +7,9 @@
 package tanks;
 
 import java.awt.Dimension;
-import static java.awt.SystemColor.window;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -61,6 +62,25 @@ public class ResolutionAsker {
         askerFrame.setLocation((int)dim.getWidth()/2 - (int)askerFrame.getWidth() / 2, (int)dim.getHeight()/2 - (int) askerFrame.getHeight()/2);
        //make the frame visible
         askerFrame.setVisible(true);
+        
+        
+        eightsix.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+        teneighty.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+        
         
     }
     
