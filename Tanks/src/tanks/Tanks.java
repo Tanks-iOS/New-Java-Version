@@ -19,13 +19,10 @@ public class Tanks {
      */
     public static void main(String[] args) {
         
-        //creating the new JFrame and calling it TANKS
-        JFrame myFrame = new JFrame("TANKS");
-       
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
-        //get the resolutionasker by calling setResolution.getResolution();
-        //etc
+        
+        
         
         
         
