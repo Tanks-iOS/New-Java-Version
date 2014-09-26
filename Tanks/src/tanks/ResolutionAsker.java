@@ -21,13 +21,16 @@ import javax.swing.WindowConstants;
  * @author Baron
  */
 public class ResolutionAsker {
-    private int width;
-    private int height;
+    private int width = 0;
+    private int height = 0;
     String path;
+    Dimension dim;
+    boolean done;
    
     
     ResolutionAsker()
     {
+        done = false;
         //creating the new frame to ask dimensions
         final JFrame askerFrame = new JFrame("SELECT RESOLUTION");
         //set the size to 400 by 300 (just to start not real dimensions yet)
@@ -60,7 +63,7 @@ public class ResolutionAsker {
         askerFrame.pack();
        
         //get the dimensions of the screen
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
         //move the window to the centre of the screen
         askerFrame.setLocation((int)dim.getWidth()/2 - (int)askerFrame.getWidth() / 2, (int)dim.getHeight()/2 - (int) askerFrame.getHeight()/2);
        //make the frame visible
@@ -71,11 +74,11 @@ public class ResolutionAsker {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                width = 800;
-                height = 600;
+                width = 960;
+                height = 540;
                 path = "eightsix";
                 askerFrame.dispose();
-            
+                done = true;
             }
         });
         
@@ -83,10 +86,23 @@ public class ResolutionAsker {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                width = 1024;
-                height = 768;
-                path = "tentwentyfour";
-                askerFrame.dispose(); }
+                width = 1920;
+                height = 1080;
+                path = "teneighty";
+                askerFrame.dispose();
+            done = true;
+            }
+        });
+        
+        twok.addActionListener(new ActionListener(){
+
+            
+            public void actionPerformed(ActionEvent e) {
+                width = 3840;
+                height = 2160;
+                path = "twok";
+                done = true;
+            }
         });
         
         
@@ -112,6 +128,15 @@ public class ResolutionAsker {
     public String getPath()
     {
         return path;
+    }
+    
+    public int getHorizCenter()
+    {
+        return (int)(dim.getWidth()/2);
+    }
+    public int getVertCenter()
+    {
+        return (int)(dim.getHeight()/2);
     }
     
     

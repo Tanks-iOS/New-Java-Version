@@ -22,7 +22,16 @@ public class Tanks {
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
         
+        JFrame mainFrame = new JFrame("Tanks");
         
+       do
+       {
+        mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
+           
+        mainFrame.setLocation(setResolution.getHorizCenter() - (int)(setResolution.getWidth()/2), setResolution.getVertCenter() - (int)(setResolution.getHeight()/2));
+        }while(setResolution.done == false);
+        mainFrame.setVisible(true);
+       
         
         
         
