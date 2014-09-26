@@ -29,7 +29,7 @@ public class ResolutionAsker {
     ResolutionAsker()
     {
         //creating the new frame to ask dimensions
-        final JFrame askerFrame = new JFrame();
+        final JFrame askerFrame = new JFrame("SELECT RESOLUTION");
         //set the size to 400 by 300 (just to start not real dimensions yet)
         askerFrame.setSize(400,300);
         //program exits if hit close button
@@ -43,9 +43,11 @@ public class ResolutionAsker {
         //make the content visible
         content.setVisible(true);
         //create button for 800 by 600
-        JButton eightsix = new JButton("800 X 600");
+        JButton eightsix = new JButton("960 X 540");
         //create button for 1024 by 768
-        JButton teneighty = new JButton("1024 X 768");
+        JButton teneighty = new JButton("1920 X 1080");
+        //create button for 2k
+        JButton twok = new JButton ("2k");
         //label to prompt for dimension
         JLabel prompt = new JLabel("Select A Dimension:");
         
@@ -53,6 +55,7 @@ public class ResolutionAsker {
         content.add(prompt);
         content.add(eightsix);
         content.add(teneighty);
+        content.add(twok);
         //resize window to the size of only our components
         askerFrame.pack();
        
