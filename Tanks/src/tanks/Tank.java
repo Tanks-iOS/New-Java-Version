@@ -33,4 +33,31 @@ public class Tank {
     long triggerSpeed=300000000;
     boolean fire=false;
     boolean fired=false;
+    
+    
+    
+    public double getX()
+{
+return tankX;
 }
+    
+    public double getY()
+    {
+        return tankY;
+    }
+    
+    
+    public void setX(double newX)
+    {
+        tankX = newX;
+    }
+    
+    public void setY(double newY)
+    {
+        tankY = newY;
+    }
+    
+    
+    
+}
+
