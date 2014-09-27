@@ -98,8 +98,8 @@ public class ResolutionAsker {
 
             
             public void actionPerformed(ActionEvent e) {
-                width = 3840;
-                height = 2160;
+                width = 2880;
+                height = 1620;
                 path = "twok";
                 done = true;
             }
