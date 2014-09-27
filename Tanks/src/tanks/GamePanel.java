@@ -22,7 +22,7 @@ public class GamePanel extends JPanel{
     
     }
     
-    public void paintCOmponent(Graphics g){
+    public void paintComponent(Graphics g){
     
     }
     

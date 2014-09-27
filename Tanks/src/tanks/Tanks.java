@@ -6,6 +6,8 @@
 
 package tanks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -33,11 +35,22 @@ public class Tanks {
         mainFrame.setLocation(setResolution.getHorizCenter() - (int)(setResolution.getWidth()/2), setResolution.getVertCenter() - (int)(setResolution.getHeight()/2));
         }
         mainFrame.setVisible(true);
-       
+        myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
+        mainFrame.setContentPane(myPanel);
+         
+        
+        
+        
+        List<Tank> tanks = new ArrayList<Tank>();
+        setTank(tanks.get(0));
+        
+        
+        
         
        while(true)
        {
-       myPanel.repaint();
+        myPanel.repaint();
+       
 
             try {
                 Thread.sleep(17);
@@ -49,18 +62,15 @@ public class Tanks {
         
         
         
+
+        
         
     }
-    public int setCollision()
-        {
-            int distance = 4;
-            int tank = 5;
-            
-            if(tank < distance)
-            {
-                System.out.println("HAHAHAHAHAHA");
-            }
-            return 2;
-        }
+    
+    public static void setTank(Tank myTank)
+    {
+        myTank.setX(5.0);
+    }
+    
     
 }
