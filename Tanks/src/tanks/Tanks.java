@@ -6,6 +6,8 @@
 
 package tanks;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -23,7 +25,7 @@ public class Tanks {
         ResolutionAsker setResolution = new ResolutionAsker();
         
         JFrame mainFrame = new JFrame("Tanks");
-        
+        GamePanel myPanel = new GamePanel();
        while(setResolution.done == false)
        {
         mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
@@ -33,7 +35,17 @@ public class Tanks {
         mainFrame.setVisible(true);
        
         
-        
+       while(true)
+       {
+       myPanel.repaint();
+
+            try {
+                Thread.sleep(17);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Tanks.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+       }
         
         
         
