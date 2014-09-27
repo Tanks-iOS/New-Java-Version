@@ -37,12 +37,7 @@ public class Tanks {
         mainFrame.setVisible(true);
         myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
         mainFrame.setContentPane(myPanel);
-         
         
-        
-        
-        List<Tank> tanks = new ArrayList<Tank>();
-        setTank(tanks.get(0));
         
         
         
@@ -67,10 +62,7 @@ public class Tanks {
         
     }
     
-    public static void setTank(Tank myTank)
-    {
-        myTank.setX(5.0);
-    }
+    
     
     
 }
