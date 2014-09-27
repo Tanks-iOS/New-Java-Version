@@ -39,5 +39,16 @@ public class Tanks {
         
         
     }
+    public int setCollision()
+        {
+            int distance = 4;
+            int tank = 5;
+            
+            if(tank < distance)
+            {
+                System.out.println("HAHAHAHAHAHA");
+            }
+            return 2;
+        }
     
 }
