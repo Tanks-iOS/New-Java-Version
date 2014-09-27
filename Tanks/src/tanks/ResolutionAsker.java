@@ -101,6 +101,7 @@ public class ResolutionAsker {
                 width = 2880;
                 height = 1620;
                 path = "twok";
+                askerFrame.dispose();
                 done = true;
             }
         });
