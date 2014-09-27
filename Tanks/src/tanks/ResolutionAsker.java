@@ -25,7 +25,7 @@ public class ResolutionAsker {
     private int height = 0;
     String path;
     Dimension dim;
-    boolean done;
+    boolean done=false;
    
     
     ResolutionAsker()
