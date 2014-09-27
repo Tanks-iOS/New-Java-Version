@@ -24,12 +24,12 @@ public class Tanks {
         
         JFrame mainFrame = new JFrame("Tanks");
         
-       do
+       while(setResolution.done == false)
        {
         mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
            
         mainFrame.setLocation(setResolution.getHorizCenter() - (int)(setResolution.getWidth()/2), setResolution.getVertCenter() - (int)(setResolution.getHeight()/2));
-        }while(setResolution.done == false);
+        }
         mainFrame.setVisible(true);
        
         
