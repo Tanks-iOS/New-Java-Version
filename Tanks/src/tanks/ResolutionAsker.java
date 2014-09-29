@@ -75,7 +75,7 @@ public class ResolutionAsker {
             public void actionPerformed(ActionEvent e) {
                 width = 960;
                 height = 540;
-                path = "eightsix";
+                path = "960X540";
                 askerFrame.dispose();
                 done = true;
             }
@@ -87,7 +87,7 @@ public class ResolutionAsker {
             public void actionPerformed(ActionEvent e) {
                 width = 1920;
                 height = 1080;
-                path = "teneighty";
+                path = "1920X1080";
                 askerFrame.dispose();
             done = true;
             }
@@ -97,9 +97,9 @@ public class ResolutionAsker {
 
             
             public void actionPerformed(ActionEvent e) {
-                width = 2880;
-                height = 1620;
-                path = "twok";
+                width = 2880+22; //22 and 56 are compenstation factors cuz the border of the window covers a bt up
+                height = 1620+56;
+                path = "2k";
                 askerFrame.dispose();
                 done = true;
             }

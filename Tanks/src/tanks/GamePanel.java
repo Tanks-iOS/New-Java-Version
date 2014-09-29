@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,23 +30,12 @@ public class GamePanel extends JPanel {
     Image background;
     MediaTracker mediaTracker = new MediaTracker(this);
 
-    GamePanel(int x, int y) {
+    GamePanel(String path) throws IOException {
 
-        fieldWidth=x;
-        fieldHeight=y;
         URL imgURL;
-        String resourceFolder = "resource\\";
+        String resourceFolder = "resources\\"+path+"\\";
         String imgPath;
-        //fieldWidth = resolution.getWidth();
-        //fieldHeight = resolution.getHeight();
-        System.out.println(fieldWidth+fieldHeight);
 
-        switch (fieldWidth) {
-            case 2880:
-                if (fieldHeight == 1620+30) {
-                    resourceFolder = "resources\\2k\\";
-                }
-        }
         imgPath = (resourceFolder + "background.png");
         System.out.println(imgPath);
         imgURL = getClass().getResource(imgPath);
@@ -57,8 +47,22 @@ public class GamePanel extends JPanel {
         } catch (InterruptedException ex) {
             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+                //store width and heigh of background
+        fieldWidth = background.getWidth(this);
+        fieldHeight = background.getHeight(this);
+
+
+        //set it to visible
+        setVisible(
+                true);
+        //get focouse
+        setFocusable(
+                true);
+        requestFocus();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, this);
     }

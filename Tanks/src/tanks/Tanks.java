@@ -5,6 +5,7 @@
  */
 package tanks;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ public class Tanks {
      */
     
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
@@ -35,17 +36,16 @@ public class Tanks {
             mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
             mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
-
+        
+        GamePanel myPanel = new GamePanel(setResolution.getPath());
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(true);
         mainFrame.setVisible(true);
-        GamePanel myPanel = new GamePanel(setResolution.getWidth(),setResolution.getHeight()+30);
-        myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
+        
         mainFrame.setContentPane(myPanel);
 
         while (true) {
             myPanel.repaint();
-
             try {
                 Thread.sleep(17);
             } catch (InterruptedException ex) {
