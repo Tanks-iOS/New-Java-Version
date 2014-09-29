@@ -3,7 +3,6 @@
  * Tanks - Version 1.0
  * 2014
  */
-
 package tanks;
 
 import java.util.ArrayList;
@@ -22,30 +21,23 @@ public class Tanks {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
-        
+
         JFrame mainFrame = new JFrame("Tanks");
         GamePanel myPanel = new GamePanel();
-       while(setResolution.done == false)
-       {
-        mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
-           
-        mainFrame.setLocation(setResolution.getHorizCenter() - (int)(setResolution.getWidth()/2), setResolution.getVertCenter() - (int)(setResolution.getHeight()/2));
+        while (setResolution.done == false) {
+            mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
+
+            mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
         mainFrame.setVisible(true);
         myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
         mainFrame.setContentPane(myPanel);
-        
-        
-        
-        
-        
-       while(true)
-       {
-        myPanel.repaint();
-       
+
+        while (true) {
+            myPanel.repaint();
 
             try {
                 Thread.sleep(17);
@@ -53,16 +45,6 @@ public class Tanks {
                 Logger.getLogger(Tanks.class
                         .getName()).log(Level.SEVERE, null, ex);
             }
-       }
-        
-        
-        
-
-        
-        
+        }
     }
-    
-    
-    
-    
 }
