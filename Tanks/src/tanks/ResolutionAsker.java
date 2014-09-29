@@ -30,7 +30,6 @@ public class ResolutionAsker {
     
     ResolutionAsker()
     {
-        done = false;
         //creating the new frame to ask dimensions
         final JFrame askerFrame = new JFrame("SELECT RESOLUTION");
         //set the size to 400 by 300 (just to start not real dimensions yet)

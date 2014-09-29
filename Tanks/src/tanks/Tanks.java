@@ -24,16 +24,19 @@ public class Tanks {
 
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
+        Game gameLoop = new Game();
 
         JFrame mainFrame = new JFrame("Tanks");
-        GamePanel myPanel = new GamePanel();
+        
         while (setResolution.done == false) {
             mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
 
             mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
         mainFrame.setVisible(true);
+        GamePanel myPanel = new GamePanel();
         myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
+        myPanel.setResolution(setResolution.getWidth(), setResolution.getHeight());
         mainFrame.setContentPane(myPanel);
 
         while (true) {
