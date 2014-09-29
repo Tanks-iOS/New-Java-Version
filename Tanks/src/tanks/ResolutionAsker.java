@@ -27,7 +27,6 @@ public class ResolutionAsker {
     Dimension dim;
     boolean done=false;
    
-    
     ResolutionAsker()
     {
         //creating the new frame to ask dimensions

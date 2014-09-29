@@ -11,4 +11,11 @@ package tanks;
  */
 public class Game {
     
+    Game(){
+    
+    }
+    
+    public static void Reset(){
+    
+    }
 }
