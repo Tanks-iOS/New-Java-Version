@@ -138,10 +138,4 @@ public class ResolutionAsker {
     {
         return (int)(dim.getHeight()/2);
     }
-    
-    
-           
-    
-    
-    
 }

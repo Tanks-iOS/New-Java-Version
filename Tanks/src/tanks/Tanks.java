@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Tanks {
     /**
      * @param args the command line arguments
      */
+    
+
     public static void main(String[] args) {
 
         //running our resolution asker
@@ -30,13 +33,14 @@ public class Tanks {
         
         while (setResolution.done == false) {
             mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
-
             mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
+
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setResizable(true);
         mainFrame.setVisible(true);
-        GamePanel myPanel = new GamePanel();
+        GamePanel myPanel = new GamePanel(setResolution.getWidth(),setResolution.getHeight()+30);
         myPanel.setSize(mainFrame.getWidth(), mainFrame.getHeight());
-        myPanel.setResolution(setResolution.getWidth(), setResolution.getHeight());
         mainFrame.setContentPane(myPanel);
 
         while (true) {
