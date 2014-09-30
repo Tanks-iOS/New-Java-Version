@@ -6,8 +6,6 @@
 package tanks;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -22,33 +20,32 @@ public class Tanks {
     /**
      * @param args the command line arguments
      */
+    GameInput myInput = new GameInput();
+    Tank myTank = new Tank();
     
-
+    
     public static void main(String[] args) throws IOException {
 
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
-        Game gameLoop = new Game();
-
         JFrame mainFrame = new JFrame("Tanks");
         
         while (setResolution.done == false) {
             mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
             mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
+         GamePanel myPanel = new GamePanel(setResolution.getPath());
         
-        GamePanel myPanel = new GamePanel(setResolution.getPath());
+        mainFrame.setContentPane(myPanel);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(true);
         mainFrame.setVisible(true);
-        
-        mainFrame.setContentPane(myPanel);
         myPanel.requestFocus();
-        
-        Tank tank = new Tank();
+
         
         while (true) {
-            myPanel.repaint();
+        myPanel.repaint();
+        System.out.println("j");
             try {
                 Thread.sleep(17);
             } catch (InterruptedException ex) {
@@ -57,4 +54,11 @@ public class Tanks {
             }
         }
     }
+    public void gameLoop()
+    {
+        if(myInput.left){
+        myTank.moveLeft();
+        }
+    }
+    
 }
