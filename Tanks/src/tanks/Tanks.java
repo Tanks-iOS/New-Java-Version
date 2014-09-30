@@ -45,6 +45,8 @@ public class Tanks {
         mainFrame.setContentPane(myPanel);
         myPanel.requestFocus();
         
+        Tank tank = new Tank();
+        
         while (true) {
             myPanel.repaint();
             try {
