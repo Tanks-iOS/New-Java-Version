@@ -22,34 +22,31 @@ public class Tanks {
      */
     GameInput myInput = null;
     GamePanel myPanel = null;
-    Tank myTank = null;
-    
-    
+
     public static void main(String[] args) throws IOException {
 
         //running our resolution asker
         ResolutionAsker setResolution = new ResolutionAsker();
         JFrame mainFrame = new JFrame("Tanks");
-        
+
         while (setResolution.done == false) {
             mainFrame.setSize(setResolution.getWidth(), setResolution.getHeight());
             mainFrame.setLocation(setResolution.getHorizCenter() - (int) (setResolution.getWidth() / 2), setResolution.getVertCenter() - (int) (setResolution.getHeight() / 2));
         }
-         GamePanel myPanel = new GamePanel(setResolution.getPath());
-         GameInput myInput = new GameInput();
-            Tank myTank = new Tank();
+        GamePanel myPanel = new GamePanel(setResolution.getPath());
+        GameInput myInput = new GameInput();
+        Tank myTank = new Tank();
         mainFrame.setContentPane(myPanel);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(true);
         mainFrame.setVisible(true);
         myPanel.requestFocus();
 
-        
         while (true) {
-        
-        gameLoop();
+
+            gameLoop();
             System.out.println("meow");
-        myPanel.repaint();
+            myPanel.repaint();
             try {
                 Thread.sleep(17);
             } catch (InterruptedException ex) {
@@ -58,22 +55,22 @@ public class Tanks {
             }
         }
     }
-    
-    public void gameLoop(){
-    if(myInput.left){
-        myTank.moveLeft();
+
+    public void gameLoop() {
+        if (myInput.left) {
+            myPanel.myTank.moveLeft();
         }
-        if(myInput.right){
-        myTank.moveRight();
+        if (myInput.right) {
+            myTank.moveRight();
         }
-        if(myInput.up){
-        myTank.moveLeft();
+        if (myInput.up) {
+            myTank.moveLeft();
         }
-        if(myInput.down){
-        myTank.moveDown();
+        if (myInput.down) {
+            myTank.moveDown();
         }
-        
+
         myPanel.setTank(myTank.getX(), myTank.getY());
     }
-    
+
 }

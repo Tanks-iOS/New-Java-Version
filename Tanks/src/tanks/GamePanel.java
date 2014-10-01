@@ -33,6 +33,7 @@ public class GamePanel extends JPanel {
     Image background;
     
     Image tank;
+
     double tankX=0;
     double tankY=0;
     
