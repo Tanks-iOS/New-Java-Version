@@ -47,7 +47,20 @@ public class Tanks {
         
         while (true) {
         
-        if(myInput.left){
+        gameLoop();
+            System.out.println("meow");
+        myPanel.repaint();
+            try {
+                Thread.sleep(17);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Tanks.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void gameLoop(){
+    if(myInput.left){
         myTank.moveLeft();
         }
         if(myInput.right){
@@ -61,14 +74,6 @@ public class Tanks {
         }
         
         myPanel.setTank(myTank.getX(), myTank.getY());
-            System.out.println("meow");
-        myPanel.repaint();
-            try {
-                Thread.sleep(17);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Tanks.class
-                        .getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
+    
 }
