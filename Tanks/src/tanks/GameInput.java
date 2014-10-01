@@ -42,9 +42,7 @@ public class GameInput implements KeyListener, MouseListener, MouseMotionListene
     public boolean down(){
     return down;
     }
-    public void (new Tank){
-    
-    }
+
 
     @Override
     public void keyTyped(KeyEvent ke) {

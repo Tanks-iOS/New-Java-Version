@@ -31,7 +31,13 @@ public class GamePanel extends JPanel {
 
     //Images
     Image background;
+    
     Image tank;
+    double tankX=0;
+    double tankY=0;
+    
+    
+    
     MediaTracker mediaTracker = new MediaTracker(this);
 
     GamePanel(String path) throws IOException {
@@ -71,9 +77,12 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, this);
-        g.drawImage(tank, 0, 0, this);
+        g.drawImage(tank, (int) tankX, (int) tankY, this);
     }
 
-    
+    public void setTank(double x, double y){
+    tankX=x;
+    tankY=y;
+    }
 
 }
