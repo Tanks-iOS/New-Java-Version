@@ -9,35 +9,46 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Baron
  */
-
 //handles game graphics
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
 
     //Game Setup
     int fieldWidth;
     int fieldHeight;
-
-    
-
+    int boundary=175;
     //Images
     Image background;
-    
-    Image tank;
 
-    double tankX=0;
-    double tankY=0;
+    BufferedImage tank;
+    BufferedImage rotatedTank;
+
+    boolean left = false;
+    boolean right = false;
+    boolean up = false;
+    boolean down = false;
     
+    char keyPressed;
     
+    Tank myTank = new Tank();
     
     MediaTracker mediaTracker = new MediaTracker(this);
 
@@ -56,7 +67,7 @@ public class GamePanel extends JPanel {
         imgPath = (resourceFolder + "tankBase.png");
         System.out.println(imgPath);
         imgURL = getClass().getResource(imgPath);
-        tank = Toolkit.getDefaultToolkit().getImage(imgURL);
+        tank = ImageIO.read(imgURL);
         mediaTracker.addImage(tank, 0);
 
         try {
@@ -68,6 +79,17 @@ public class GamePanel extends JPanel {
         //store width and heigh of background
         fieldWidth = background.getWidth(this);
         fieldHeight = background.getHeight(this);
+        //add mouse and keyboard inputs
+        addKeyListener(
+                this);
+        addMouseMotionListener(
+                this);
+        addMouseListener(
+                this);
+
+        //set the side of the panel to the background size
+        setSize(fieldWidth, fieldHeight);
+
         //set it to visible
         setVisible(true);
         //get focouse
@@ -78,12 +100,96 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, this);
-        g.drawImage(tank, (int) tankX, (int) tankY, this);
+        
+        AffineTransform tankRotate = new AffineTransform();
+        tankRotate.rotate(Math.PI/2, tank.getWidth(this)/2,tank.getHeight(this)/2);
+        AffineTransformOp opRotated = new AffineTransformOp(tankRotate, AffineTransformOp.TYPE_BILINEAR);
+        rotatedTank= opRotated.filter(tank,null);
+        
+        g.drawImage(rotatedTank, (int) myTank.getX() - (tank.getWidth(this))/2, (int) myTank.getY()-(tank.getHeight(this))/2, this);
     }
 
-    public void setTank(double x, double y){
-    tankX=x;
-    tankY=y;
+    @Override
+    public void keyTyped(KeyEvent ke) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        System.out.println("2");
+        keyPressed = (ke.getKeyChar());
+        switch (keyPressed) {
+            case 'a':
+                left = true;
+                
+                break;
+            case 'd':
+                right = true;
+                break;
+            case 'w':
+                up = true;
+                break;
+            case 's':
+                down = true;
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        keyPressed = (ke.getKeyChar());
+        switch (keyPressed) {
+            case 'a':
+                left = false;
+                break;
+            case 'd':
+                right = false;
+                break;
+            case 'w':
+                up = false;
+                break;
+            case 's':
+                down = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        System.out.println("Mouse @:"+me.getX()+", "+me.getY());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -15,7 +15,7 @@ public class Tank {
 
     double tankX;
     double tankY;
-    double tankSpeed = 2;
+    double tankSpeed = 10;
 
     boolean moveLeft = false;
     boolean moveRight = false;
@@ -44,11 +44,10 @@ public class Tank {
     public double getY() {
         return tankY;
     }
-    public void setX(double newX) {
+    public void setPosition(double newX, double newY) {
         tankX = newX;
-    }
-    public void setY(double newY) {
         tankY = newY;
+        
     }
     public void moveLeft(){
         tankX -=tankSpeed;
@@ -57,10 +56,10 @@ public class Tank {
         tankX +=tankSpeed;
     }
     public void moveUp(){
-        tankX -=tankSpeed;
+        tankY -=tankSpeed;
     }
     public void moveDown(){
-        tankX +=tankSpeed;
+        tankY +=tankSpeed;
     }
 
 }

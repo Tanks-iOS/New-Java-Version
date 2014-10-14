@@ -96,8 +96,8 @@ public class ResolutionAsker {
 
             
             public void actionPerformed(ActionEvent e) {
-                width = 2880+22; //22 and 56 are compenstation factors cuz the border of the window covers a bt up
-                height = 1620+56;
+                width = 2880+6; //22 and 56 are compenstation factors cuz the border of the window covers a bt up
+                height = 1620+40;
                 path = "2k";
                 askerFrame.dispose();
                 done = true;
