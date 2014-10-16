@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
     //Game Setup
     int fieldWidth;
     int fieldHeight;
-    int boundary=175;
+    int boundary=200;
     //Images
     Image background;
 
@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
         g.drawImage(background, 0, 0, this);
         
         AffineTransform tankRotate = new AffineTransform();
-        tankRotate.rotate(Math.PI/2, tank.getWidth(this)/2,tank.getHeight(this)/2);
+        tankRotate.rotate(myTank.getBearing(), (int)((int)(tank.getWidth(this)+1)/2),(int)((int)(tank.getHeight(this)+1)/2));
         AffineTransformOp opRotated = new AffineTransformOp(tankRotate, AffineTransformOp.TYPE_BILINEAR);
         rotatedTank= opRotated.filter(tank,null);
         
@@ -116,12 +116,10 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        System.out.println("2");
         keyPressed = (ke.getKeyChar());
         switch (keyPressed) {
             case 'a':
                 left = true;
-                
                 break;
             case 'd':
                 right = true;

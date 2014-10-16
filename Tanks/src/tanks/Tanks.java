@@ -40,20 +40,49 @@ public class Tanks {
         myPanel.requestFocus();
 
         while (true) {
-        if (myPanel.left&&myPanel.myTank.getX()>=myPanel.boundary) {
-            myPanel.myTank.moveLeft();
-            System.out.println("yes");
-        }
-        if (myPanel.right&&myPanel.myTank.getX()<=myPanel.fieldWidth-myPanel.boundary) {
-            myPanel.myTank.moveRight();
-        }
-        if (myPanel.up&&myPanel.myTank.getY()>myPanel.boundary) {
-            myPanel.myTank.moveUp();
-        }
-        if (myPanel.down&&myPanel.myTank.getY()<=myPanel.fieldHeight-myPanel.boundary) {
-            myPanel.myTank.moveDown();
-        }
-       myPanel.myTank.setPosition(myPanel.myTank.getX(), myPanel.myTank.getY());
+            if (myPanel.left && myPanel.myTank.getX() >= myPanel.boundary) {
+                myPanel.myTank.moveLeft();
+
+                if (myPanel.up) {
+                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
+                } else if (myPanel.down) {
+                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
+                } else {
+                    myPanel.myTank.setBearing(Math.PI);
+                }
+            }
+            if (myPanel.right && myPanel.myTank.getX() <= myPanel.fieldWidth - myPanel.boundary) {
+                myPanel.myTank.moveRight();
+                if (myPanel.up) {
+                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
+                } else if (myPanel.down) {
+                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
+                } else {
+                    myPanel.myTank.setBearing(0);
+                }
+            }
+            if (myPanel.up && myPanel.myTank.getY() > myPanel.boundary) {
+                myPanel.myTank.moveUp();
+                if (myPanel.right) {
+                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
+                } else if (myPanel.left) {
+                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
+                } else {
+                    myPanel.myTank.setBearing(-Math.PI * 2 / 4);
+                }
+            }
+            if (myPanel.down && myPanel.myTank.getY() <= myPanel.fieldHeight - myPanel.boundary) {
+                myPanel.myTank.moveDown();
+                if (myPanel.right) {
+                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
+                } else if (myPanel.left) {
+                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
+                } else {
+                    myPanel.myTank.setBearing(+Math.PI * 2 / 4);
+                }
+            }
+
+            myPanel.myTank.setPosition(myPanel.myTank.getX(), myPanel.myTank.getY());
 
             //System.out.println("meow");
             myPanel.repaint();

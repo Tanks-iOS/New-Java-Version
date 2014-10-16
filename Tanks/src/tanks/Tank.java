@@ -16,11 +16,7 @@ public class Tank {
     double tankX;
     double tankY;
     double tankSpeed = 10;
-
-    boolean moveLeft = false;
-    boolean moveRight = false;
-    boolean moveUp = false;
-    boolean moveDown = false;
+    double bearing=0;
 
     boolean hitLeft = false;
     boolean hitRight = false;
@@ -37,7 +33,12 @@ public class Tank {
     Tank(){
     
     }
-    
+    public void setBearing(double angle){
+        bearing=angle;
+    }
+    public double getBearing(){
+        return bearing;
+    }
     public double getX() {
         return tankX;
     }
@@ -46,9 +47,9 @@ public class Tank {
     }
     public void setPosition(double newX, double newY) {
         tankX = newX;
-        tankY = newY;
-        
-    }
+        tankY = newY;   
+    } 
+    
     public void moveLeft(){
         tankX -=tankSpeed;
     }
