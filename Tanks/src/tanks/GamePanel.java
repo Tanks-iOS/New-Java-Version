@@ -19,6 +19,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -49,6 +50,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
     char keyPressed;
     
     Tank myTank = new Tank();
+    ArrayList<Bullet> activeBullets = new ArrayList();
     
     MediaTracker mediaTracker = new MediaTracker(this);
 
@@ -163,6 +165,8 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
 
     @Override
     public void mousePressed(MouseEvent me) {
+        myTank.trigger=true;
+        myTank.fireAngle=Math.atan2(myTank.getX()-me.getX(), myTank.getY()-me.getY());
         System.out.println("Mouse @:"+me.getX()+", "+me.getY());
     }
 

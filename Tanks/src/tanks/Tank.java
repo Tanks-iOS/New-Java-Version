@@ -27,6 +27,8 @@ public class Tank {
     int amo = bulletMag;
     long reloadTime = 600000000;
     long triggerSpeed = 300000000;
+    double fireAngle=0;
+    boolean trigger= false;
     boolean fire = false;
     boolean fired = false;
 

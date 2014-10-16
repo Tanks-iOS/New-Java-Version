@@ -10,5 +10,14 @@ package tanks;
  * @author Ryan
  */
 public class Bullet {
+    double bulletX;
+    double bulletY;
+    double bulletAngle;
     
+    Bullet(double x, double y, double angle){
+        bulletX = x;
+        bulletY = y;
+        bulletAngle =angle;
+    
+    }
 }

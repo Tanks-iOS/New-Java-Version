@@ -44,9 +44,9 @@ public class Tanks {
                 myPanel.myTank.moveLeft();
 
                 if (myPanel.up) {
-                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
+                    myPanel.myTank.setBearing(-Math.PI * 3 / 4);
                 } else if (myPanel.down) {
-                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
+                    myPanel.myTank.setBearing(+Math.PI * 3 / 4);
                 } else {
                     myPanel.myTank.setBearing(Math.PI);
                 }
@@ -63,28 +63,22 @@ public class Tanks {
             }
             if (myPanel.up && myPanel.myTank.getY() > myPanel.boundary) {
                 myPanel.myTank.moveUp();
-                if (myPanel.right) {
-                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
-                } else if (myPanel.left) {
-                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
-                } else {
+                if (!myPanel.right && !myPanel.left) {
                     myPanel.myTank.setBearing(-Math.PI * 2 / 4);
                 }
             }
             if (myPanel.down && myPanel.myTank.getY() <= myPanel.fieldHeight - myPanel.boundary) {
                 myPanel.myTank.moveDown();
-                if (myPanel.right) {
-                    myPanel.myTank.setBearing(+Math.PI * 1 / 4);
-                } else if (myPanel.left) {
-                    myPanel.myTank.setBearing(-Math.PI * 1 / 4);
-                } else {
+                if(!myPanel.right && !myPanel.left){
                     myPanel.myTank.setBearing(+Math.PI * 2 / 4);
                 }
             }
 
             myPanel.myTank.setPosition(myPanel.myTank.getX(), myPanel.myTank.getY());
 
-            //System.out.println("meow");
+            if(myPanel.myTank.trigger){
+            myPanel.activeBullets.add(new Bullet(myPanel.myTank.getX(), myPanel.myTank.getY(), myPanel.myTank.fireAngle));
+            }
             myPanel.repaint();
             try {
                 Thread.sleep(17);
