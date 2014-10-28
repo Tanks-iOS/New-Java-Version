@@ -20,6 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -35,23 +36,27 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
     //Game Setup
     int fieldWidth;
     int fieldHeight;
-    int boundary=200;
+    int boundary = 200;
     //Images
     Image background;
 
     BufferedImage tank;
     BufferedImage rotatedTank;
+    BufferedImage bullet;
+    BufferedImage rotatedBullet;
 
     boolean left = false;
     boolean right = false;
     boolean up = false;
     boolean down = false;
-    
+
     char keyPressed;
-    
+
     Tank myTank = new Tank();
     ArrayList<Bullet> activeBullets = new ArrayList();
-    
+
+    Iterator bulletITR;
+
     MediaTracker mediaTracker = new MediaTracker(this);
 
     GamePanel(String path) throws IOException {
@@ -70,6 +75,12 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
         System.out.println(imgPath);
         imgURL = getClass().getResource(imgPath);
         tank = ImageIO.read(imgURL);
+        mediaTracker.addImage(tank, 0);
+
+        imgPath = (resourceFolder + "goldBulletBill.png");
+        System.out.println(imgPath);
+        imgURL = getClass().getResource(imgPath);
+        bullet = ImageIO.read(imgURL);
         mediaTracker.addImage(tank, 0);
 
         try {
@@ -102,18 +113,27 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, this);
-        
+
         AffineTransform tankRotate = new AffineTransform();
-        tankRotate.rotate(myTank.getBearing(), (int)((int)(tank.getWidth(this)+1)/2),(int)((int)(tank.getHeight(this)+1)/2));
-        AffineTransformOp opRotated = new AffineTransformOp(tankRotate, AffineTransformOp.TYPE_BILINEAR);
-        rotatedTank= opRotated.filter(tank,null);
-        
-        g.drawImage(rotatedTank, (int) myTank.getX() - (tank.getWidth(this))/2, (int) myTank.getY()-(tank.getHeight(this))/2, this);
+        tankRotate.rotate(myTank.getBearing(), (int) ((int) (tank.getWidth(this) + 1) / 2), (int) ((int) (tank.getHeight(this) + 1) / 2));
+        AffineTransformOp tankRotated = new AffineTransformOp(tankRotate, AffineTransformOp.TYPE_BILINEAR);
+        rotatedTank = tankRotated.filter(tank, null);
+        g.drawImage(rotatedTank, (int) myTank.getX() - (tank.getWidth(this)) / 2, (int) myTank.getY() - (tank.getHeight(this)) / 2, this);
+
+        bulletITR = activeBullets.iterator();
+        while (bulletITR.hasNext()) {
+            Bullet theBullet = (Bullet) bulletITR.next();
+            AffineTransform bulletRotate = new AffineTransform();
+            bulletRotate.rotate(theBullet.bulletAngle, (int) ((int) (bullet.getWidth(this) + 1) / 2), (int) ((int) (bullet.getHeight(this) + 1) / 2));
+            AffineTransformOp bulletRotated = new AffineTransformOp(bulletRotate, AffineTransformOp.TYPE_BILINEAR);
+            rotatedBullet = bulletRotated.filter(bullet, null);
+            g.drawImage(rotatedBullet, (int) theBullet.bulletX - (bullet.getWidth(this)) / 2, (int) theBullet.bulletY - (bullet.getHeight(this)) / 2, this);
+        }
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
-     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -165,9 +185,9 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
 
     @Override
     public void mousePressed(MouseEvent me) {
-        myTank.trigger=true;
-        myTank.fireAngle=Math.atan2(myTank.getX()-me.getX(), myTank.getY()-me.getY());
-        System.out.println("Mouse @:"+me.getX()+", "+me.getY());
+        myTank.trigger = true;
+        myTank.fireAngle = Math.atan2(me.getY()-myTank.getY(),me.getX()-myTank.getX());
+        System.out.println("Mouse @:" + me.getX() + ", " + me.getY());
     }
 
     @Override

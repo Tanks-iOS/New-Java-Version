@@ -6,6 +6,7 @@
 package tanks;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -20,8 +21,6 @@ public class Tanks {
     /**
      * @param args the command line arguments
      */
-    GamePanel myPanel = null;
-
     public static void main(String[] args) throws IOException {
 
         //running our resolution asker
@@ -38,6 +37,8 @@ public class Tanks {
         mainFrame.setResizable(false);
         mainFrame.setContentPane(myPanel);
         myPanel.requestFocus();
+
+        Iterator bulletITR;//bullet array
 
         while (true) {
             if (myPanel.left && myPanel.myTank.getX() >= myPanel.boundary) {
@@ -69,15 +70,23 @@ public class Tanks {
             }
             if (myPanel.down && myPanel.myTank.getY() <= myPanel.fieldHeight - myPanel.boundary) {
                 myPanel.myTank.moveDown();
-                if(!myPanel.right && !myPanel.left){
+                if (!myPanel.right && !myPanel.left) {
                     myPanel.myTank.setBearing(+Math.PI * 2 / 4);
                 }
             }
 
             myPanel.myTank.setPosition(myPanel.myTank.getX(), myPanel.myTank.getY());
 
-            if(myPanel.myTank.trigger){
-            myPanel.activeBullets.add(new Bullet(myPanel.myTank.getX(), myPanel.myTank.getY(), myPanel.myTank.fireAngle));
+            if (myPanel.myTank.trigger) {
+                myPanel.activeBullets.add(new Bullet(myPanel.myTank.getX(), myPanel.myTank.getY(), myPanel.myTank.fireAngle));
+                myPanel.myTank.trigger = false;
+            }
+
+            bulletITR = myPanel.activeBullets.iterator();
+            while (bulletITR.hasNext()) {
+                Bullet theBullet = (Bullet) bulletITR.next();
+                theBullet.bulletX += theBullet.bulletSpeed * Math.cos(theBullet.bulletAngle);
+                theBullet.bulletY += theBullet.bulletSpeed * Math.sin(theBullet.bulletAngle);
             }
             myPanel.repaint();
             try {
@@ -88,9 +97,4 @@ public class Tanks {
             }
         }
     }
-
-    public void gameLoop() {
-
-    }
-
 }

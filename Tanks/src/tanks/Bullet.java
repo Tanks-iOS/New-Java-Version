@@ -13,6 +13,7 @@ public class Bullet {
     double bulletX;
     double bulletY;
     double bulletAngle;
+    double bulletSpeed=10;
     
     Bullet(double x, double y, double angle){
         bulletX = x;
