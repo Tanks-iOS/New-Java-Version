@@ -16,7 +16,7 @@ public class Tank {
     double tankX;
     double tankY;
     double tankSpeed = 10;
-    double bearing=0;
+    double bearing = 0;
 
     boolean hitLeft = false;
     boolean hitRight = false;
@@ -27,42 +27,50 @@ public class Tank {
     int amo = bulletMag;
     long reloadTime = 600000000;
     long triggerSpeed = 300000000;
-    double fireAngle=0;
-    boolean trigger= false;
+    double fireAngle = 0;
+    boolean trigger = false;
     boolean fire = false;
     boolean fired = false;
 
-    Tank(){
-    
+    Tank() {
+
     }
-    public void setBearing(double angle){
-        bearing=angle;
+
+    public void setBearing(double angle) {
+        bearing = angle;
     }
-    public double getBearing(){
+
+    public double getBearing() {
         return bearing;
     }
+
     public double getX() {
         return tankX;
     }
+
     public double getY() {
         return tankY;
     }
+
     public void setPosition(double newX, double newY) {
         tankX = newX;
-        tankY = newY;   
-    } 
-    
-    public void moveLeft(){
-        tankX -=tankSpeed;
+        tankY = newY;
     }
-    public void moveRight(){
-        tankX +=tankSpeed;
+
+    public void moveLeft() {
+        tankX -= tankSpeed;
     }
-    public void moveUp(){
-        tankY -=tankSpeed;
+
+    public void moveRight() {
+        tankX += tankSpeed;
     }
-    public void moveDown(){
-        tankY +=tankSpeed;
+
+    public void moveUp() {
+        tankY -= tankSpeed;
+    }
+
+    public void moveDown() {
+        tankY += tankSpeed;
     }
 
 }

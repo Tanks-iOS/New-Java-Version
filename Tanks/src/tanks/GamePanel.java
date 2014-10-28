@@ -186,7 +186,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
     @Override
     public void mousePressed(MouseEvent me) {
         myTank.trigger = true;
-        myTank.fireAngle = Math.atan2(me.getY()-myTank.getY(),me.getX()-myTank.getX());
+        myTank.fireAngle = Math.atan2(me.getY() - myTank.getY(), me.getX() - myTank.getX());
         System.out.println("Mouse @:" + me.getX() + ", " + me.getY());
     }
 
