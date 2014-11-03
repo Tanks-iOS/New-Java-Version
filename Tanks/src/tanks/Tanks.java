@@ -87,13 +87,20 @@ public class Tanks {
                 Bullet theBullet = (Bullet) bulletITR.next();
                 theBullet.bulletX += theBullet.bulletSpeed * Math.cos(theBullet.bulletAngle);
                 theBullet.bulletY += theBullet.bulletSpeed * Math.sin(theBullet.bulletAngle);
+
+                if (myPanel.boundary > theBullet.bulletX || theBullet.bulletX > (myPanel.fieldWidth - myPanel.boundary)) {
+                    theBullet.bulletAngle = Math.PI - theBullet.bulletAngle;
+                }
+
+                if (myPanel.boundary > theBullet.bulletY || theBullet.bulletY > (myPanel.fieldHeight - myPanel.boundary)) {
+                    theBullet.bulletAngle = -theBullet.bulletAngle;
+                }
             }
             myPanel.repaint();
             try {
                 Thread.sleep(17);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Tanks.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tanks.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
