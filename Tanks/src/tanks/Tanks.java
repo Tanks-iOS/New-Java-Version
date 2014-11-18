@@ -39,6 +39,7 @@ public class Tanks {
         myPanel.requestFocus();
 
         Iterator bulletITR;//bullet array
+        Iterator bulletRemover;
 
         while (true) {
             if (myPanel.left && myPanel.myTank.getX() >= myPanel.boundary) {
@@ -90,10 +91,27 @@ public class Tanks {
 
                 if (myPanel.boundary > theBullet.bulletX || theBullet.bulletX > (myPanel.fieldWidth - myPanel.boundary)) {
                     theBullet.bulletAngle = Math.PI - theBullet.bulletAngle;
+                    theBullet.bounces++;
                 }
 
                 if (myPanel.boundary > theBullet.bulletY || theBullet.bulletY > (myPanel.fieldHeight - myPanel.boundary)) {
                     theBullet.bulletAngle = -theBullet.bulletAngle;
+                    theBullet.bounces++;
+                }
+                if(theBullet.bounces>=theBullet.maxBounces){
+                    theBullet.remove=true;
+                }
+            }
+
+            bulletRemover = myPanel.activeBullets.iterator();
+            while (bulletRemover.hasNext()) {
+                Bullet theBullet = (Bullet) bulletRemover.next();
+                if (theBullet.remove) {
+                    try {
+                        //remove bullet
+                        bulletRemover.remove();
+                    } catch (IllegalStateException e) {
+                    }
                 }
             }
             myPanel.repaint();

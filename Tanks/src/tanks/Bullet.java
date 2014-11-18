@@ -14,6 +14,9 @@ public class Bullet {
     double bulletY;
     double bulletAngle;
     double bulletSpeed=10;
+    int bounces=0;
+    int maxBounces=2;
+    boolean remove=false;
     
     Bullet(double x, double y, double angle){
         bulletX = x;
